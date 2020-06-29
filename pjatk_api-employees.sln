@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pjatk_api-employees", "pjatk_api-employees\pjatk_api-employees.csproj", "{DF35EBDC-6262-4175-B54E-5DA321F69C32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF35EBDC-6262-4175-B54E-5DA321F69C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF35EBDC-6262-4175-B54E-5DA321F69C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF35EBDC-6262-4175-B54E-5DA321F69C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF35EBDC-6262-4175-B54E-5DA321F69C32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCC22E92-BAA5-4C9B-8E5D-6E9030A4E3D0}
+	EndGlobalSection
+EndGlobal
