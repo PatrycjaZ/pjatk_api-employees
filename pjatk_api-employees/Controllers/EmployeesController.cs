@@ -19,5 +19,12 @@ namespace pjatk_api_employees.Controllers
         {
             return Ok("It works!");
         }
+
+        // zwrócenie listy pracowników
+        [HttpGet]
+        public IActionResult GetEmployees()
+        {
+            return Ok("Under construction");
+        }
     }
 }
