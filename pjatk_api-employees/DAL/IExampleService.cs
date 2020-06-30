@@ -13,5 +13,6 @@ namespace pjatk_api_employees.DAL
         EmployeesResponseDto GetEmployeeById(int idEmployee);
         bool AddEmployee(EmployeesRequestDto newEmployee);
         bool UpdateEmployee(int id, EmployeesRequestDto updateEmployee);
+        bool DeleteEmployee(int id);
     }
 }

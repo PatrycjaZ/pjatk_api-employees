@@ -55,5 +55,15 @@ namespace pjatk_api_employees.Controllers
             else
                 return BadRequest("Something went wrong");
         }
+
+        // localhost:52269/api/employees/40
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteEmployee(int id)
+        {
+            if (_service.DeleteEmployee(id))
+                return Ok($"Employee with id ({id}) has been deleted.");
+            else 
+                return BadRequest($"Employee with provided id ({id}) not found");
+        }
     }
 }

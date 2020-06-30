@@ -43,6 +43,31 @@ namespace pjatk_api_employees.DAL
             }
         }
 
+        public bool DeleteEmployee(int id)
+        {
+            try
+            {
+                var employeeToRemove = context.Pracownik.SingleOrDefault(x => x.Idpracownik == id);
+                if (employeeToRemove == null)
+                    return false;
+                else
+                {
+                    context.Pracownik.Remove(employeeToRemove);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateEmployee(int id, EmployeesRequestDto updateEmployee)
+        {
+            throw new NotImplementedException();
+        }
+
         public EmployeesResponseDto GetEmployeeById(int idEmployee)
         {
             return context.Pracownik
@@ -100,11 +125,6 @@ namespace pjatk_api_employees.DAL
         public string Test()
         {
             return "It works!";
-        }
-
-        public bool UpdateEmployee(int id, EmployeesRequestDto updateEmployee)
-        {
-            throw new NotImplementedException();
         }
     }
 }
