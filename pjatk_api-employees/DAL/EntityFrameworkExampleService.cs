@@ -2,6 +2,7 @@
 using pjatk_api_employees.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -20,10 +21,8 @@ namespace pjatk_api_employees.DAL
         {
             try
             {
-                var newId = context.Pracownik.Max(x => x.Idpracownik) + 1;
                 var employeeToAdd = new Pracownik
                 {
-                    Idpracownik = newId,
                     Imie = newEmployee.FirstName,
                     Nazwisko = newEmployee.LastName,
                     RokUr = newEmployee.BirthYear,
@@ -38,7 +37,7 @@ namespace pjatk_api_employees.DAL
                 context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }

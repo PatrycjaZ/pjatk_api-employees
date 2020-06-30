@@ -39,13 +39,6 @@ namespace pjatk_api_employees.Controllers
                 return NotFound($"Employee with provided id ({id}) not found");
         }
 
-        // localhost:52269/api/employees/test 
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok(_service.Test());
-        }
-
         // localhost:52269/api/employees [+ body]
         [HttpPost]
         public IActionResult AddEmployee(EmployeesRequestDto requestDto)
@@ -74,6 +67,13 @@ namespace pjatk_api_employees.Controllers
                 return Ok($"Employee with id ({id}) has been updated.");
             else
                 return BadRequest($"Employee with provided id ({id}) not found");
+        }
+
+        // localhost:52269/api/employees/test 
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok(_service.Test());
         }
     }
 }
