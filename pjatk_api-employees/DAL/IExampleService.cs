@@ -7,5 +7,6 @@ namespace pjatk_api_employees.DAL
 {
     public interface IExampleService
     {
+        string Test();
     }
 }

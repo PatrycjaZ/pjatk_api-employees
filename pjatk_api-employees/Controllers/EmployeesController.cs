@@ -23,7 +23,7 @@ namespace pjatk_api_employees.Controllers
         [HttpGet("test")]
         public IActionResult Test()
         {
-            return Ok("It works!");
+            return Ok(_service.Test());
         }
 
         // localhost:52269/api/employees 
