@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using pjatk_api_employees.DTOs.Participate;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace pjatk_api_employees.DAL
 {
@@ -37,7 +39,7 @@ namespace pjatk_api_employees.DAL
                 context.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -87,6 +89,7 @@ namespace pjatk_api_employees.DAL
         {
             return context.Pracownik
                 .Where(x => x.Idpracownik == idEmployee)
+                .Include(x => x.UdzialWSpotkaniu)
                 .Select(x => new EmployeesResponseDto
                 {
                     IdEmployee = x.Idpracownik,
@@ -97,7 +100,12 @@ namespace pjatk_api_employees.DAL
                     Job = x.Stanowisko,
                     Email = x.Email,
                     PhoneNo = x.NrTel,
-                    Info = x.TablicaInfo
+                    Info = x.TablicaInfo,
+                    ParticipateInMeeting = x.UdzialWSpotkaniu.Select(x => new ParticipateResponseDto
+                    {
+                        IdMeeting = x.SpotkanieIdspotkanie,
+                        MeetingSpot = x.MiejsceSpotkania
+                    }).ToList()
                 })
                 .SingleOrDefault();
         }
@@ -106,6 +114,7 @@ namespace pjatk_api_employees.DAL
         {
             if (string.IsNullOrEmpty(lastName))
                 return context.Pracownik
+                    .Include(x => x.UdzialWSpotkaniu)
                     .Select(x => new EmployeesResponseDto
                     {
                         IdEmployee = x.Idpracownik,
@@ -116,12 +125,18 @@ namespace pjatk_api_employees.DAL
                         Job = x.Stanowisko,
                         Email = x.Email,
                         PhoneNo = x.NrTel,
-                        Info = x.TablicaInfo
+                        Info = x.TablicaInfo,
+                        ParticipateInMeeting = x.UdzialWSpotkaniu.Select(x => new ParticipateResponseDto
+                        {
+                            IdMeeting = x.SpotkanieIdspotkanie,
+                            MeetingSpot = x.MiejsceSpotkania
+                        }).ToList()
                     })
                     .ToList();
             else
                 return context.Pracownik
                     .Where(x => x.Nazwisko == lastName)
+                    .Include(x => x.UdzialWSpotkaniu)
                     .Select(x => new EmployeesResponseDto
                     {
                         IdEmployee = x.Idpracownik,
@@ -132,7 +147,12 @@ namespace pjatk_api_employees.DAL
                         Job = x.Stanowisko,
                         Email = x.Email,
                         PhoneNo = x.NrTel,
-                        Info = x.TablicaInfo
+                        Info = x.TablicaInfo,
+                        ParticipateInMeeting = x.UdzialWSpotkaniu.Select(x => new ParticipateResponseDto
+                        {
+                            IdMeeting = x.SpotkanieIdspotkanie,
+                            MeetingSpot = x.MiejsceSpotkania
+                        }).ToList()
                     })
                     .ToList();
         }
