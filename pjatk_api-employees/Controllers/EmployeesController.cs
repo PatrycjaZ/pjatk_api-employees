@@ -4,16 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using pjatk_api_employees.DAL;
 
 namespace pjatk_api_employees.Controllers
 {
-    // localhost:52269/api/employees
-    [Route("api/employees")] // adres pod jakim dostajemy się do naszego kontrolera
+    [Route("api/employees")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        private readonly IExampleService _service;
+
+        public EmployeesController(IExampleService service) // ctor + tab + tab
+        {
+            _service = service;
+        }
+
         // localhost:52269/api/employees/test 
-        // metoda do sprawdzenia, czy api działa 
         [HttpGet("test")]
         public IActionResult Test()
         {
@@ -21,7 +27,6 @@ namespace pjatk_api_employees.Controllers
         }
 
         // localhost:52269/api/employees 
-        // zwrócenie listy pracowników
         [HttpGet]
         public IActionResult GetEmployees()
         {
