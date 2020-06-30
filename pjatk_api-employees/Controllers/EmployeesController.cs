@@ -65,5 +65,15 @@ namespace pjatk_api_employees.Controllers
             else 
                 return BadRequest($"Employee with provided id ({id}) not found");
         }
+
+        // localhost:52269/api/employees/2 [+ body]
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateEmployee(int id, EmployeesRequestDto requestDto)
+        {
+            if (_service.UpdateEmployee(id, requestDto))
+                return Ok($"Employee with id ({id}) has been updated.");
+            else
+                return BadRequest($"Employee with provided id ({id}) not found");
+        }
     }
 }

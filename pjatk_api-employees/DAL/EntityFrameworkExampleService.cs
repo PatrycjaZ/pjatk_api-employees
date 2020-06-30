@@ -24,10 +24,11 @@ namespace pjatk_api_employees.DAL
                 var employeeToAdd = new Pracownik
                 {
                     Idpracownik = newId,
-                    Nazwisko = newEmployee.LastName,
                     Imie = newEmployee.FirstName,
+                    Nazwisko = newEmployee.LastName,
                     RokUr = newEmployee.BirthYear,
                     Miasto = newEmployee.City,
+                    Stanowisko = newEmployee.Job,
                     Email = newEmployee.Email,
                     NrTel = newEmployee.PhoneNo,
                     TablicaInfo = newEmployee.Info
@@ -65,7 +66,22 @@ namespace pjatk_api_employees.DAL
 
         public bool UpdateEmployee(int id, EmployeesRequestDto updateEmployee)
         {
-            throw new NotImplementedException();
+            var employeeToEdit = context.Pracownik.SingleOrDefault(x => x.Idpracownik == id);
+            if (employeeToEdit == null)
+                return false;
+            else
+            {
+                employeeToEdit.Imie = updateEmployee.FirstName;
+                employeeToEdit.Nazwisko = updateEmployee.LastName;
+                employeeToEdit.RokUr = updateEmployee.BirthYear;
+                employeeToEdit.Miasto = updateEmployee.City;
+                employeeToEdit.Stanowisko = updateEmployee.Job;
+                employeeToEdit.Email = updateEmployee.Email;
+                employeeToEdit.NrTel = updateEmployee.PhoneNo;
+                employeeToEdit.TablicaInfo = updateEmployee.Info;
+                context.SaveChanges();
+                return true;
+            }
         }
 
         public EmployeesResponseDto GetEmployeeById(int idEmployee)
