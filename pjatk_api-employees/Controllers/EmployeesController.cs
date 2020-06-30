@@ -20,6 +20,7 @@ namespace pjatk_api_employees.Controllers
             return Ok("It works!");
         }
 
+        // localhost:52269/api/employees 
         // zwrócenie listy pracowników
         [HttpGet]
         public IActionResult GetEmployees()
