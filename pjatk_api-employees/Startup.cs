@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using pjatk_api_employees.DAL;
 
 namespace pjatk_api_employees
 {
@@ -24,6 +25,7 @@ namespace pjatk_api_employees
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IExampleService, EntityFrameworkExampleService>();
             services.AddControllers();
         }
 
